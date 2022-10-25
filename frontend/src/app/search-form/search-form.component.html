@@ -1,0 +1,52 @@
+<div class="search-form">
+    <h2 class="text-center">Business search</h2>
+    <form id="searchForm" class="row g-3" [formGroup]="searchForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+        <div class="col-12">
+            <label for="inputKeyword" class="form-label">Keywords <span style="color: red;">*</span></label>
+            <input class="form-control" id = "selectedResult" matInput [matAutocomplete]="auto"
+                formControlName="inputKeyword" required>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelected()" [displayWith]="displayWith">
+                <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+                <ng-container *ngIf="!isLoading">
+                    <mat-option *ngFor="let result of filteredResults" [value]="result">
+                        <span><b>{{result}}</b></span>
+                    </mat-option>
+                </ng-container>
+            </mat-autocomplete>
+        </div>
+
+        <div class="col-md-6">
+            <label for="inputDistance" class="form-label">Distance</label>
+            <input type="number" class="form-control" formControlName = "inputDistance" placeholder="10"  required/>
+        </div>
+
+        <div class="col-md-6">
+            <label for="selectCategory" class="form-label">Category <span style="color: red;">*</span></label>
+            <select class="form-select" id = "selectCategory" formControlName = "selectCategory">
+                <option *ngFor="let category of categoryOptions" [value]="category.value">{{ category.name }}</option>
+            </select>
+        </div>
+
+        <div class="col-12">
+            <label for="inputLocation" class="form-label">Location <span style="color: red;">*</span></label>
+            <input type="text" class="form-control" id ="inputLocation" formControlName = "inputLocation" required/>
+        </div>
+
+        <div class="col-12">
+            <div class="form-check">
+                <label class="form-check-label" for="autoDetect">
+                    Auto-dectet my location
+                </label>
+                <input class="form-check-input" #checkbox type="checkbox" (click)="checkOnChange(checkbox.checked)" id="autoDetect" />
+            </div>
+        </div>
+
+        <div class="col-6 text-end submit">
+            <button type="submit" id="Search" value="Submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-6 clear">
+            <button type="clear" class="btn btn-primary">Clear</button>
+        </div>
+
+    </form>
+</div>
