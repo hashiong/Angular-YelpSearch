@@ -45,8 +45,14 @@
             <button type="submit" id="Search" value="Submit" class="btn btn-primary">Submit</button>
         </div>
         <div class="col-6 clear">
-            <button type="clear" class="btn btn-primary">Clear</button>
+            <button type="clear" class="btn btn-primary" (click)="clear()" >Clear</button>
         </div>
 
     </form>
 </div>
+<div *ngIf="submitted">
+    <app-search-results [businesses]="results"></app-search-results>
+</div>
+
+    
+

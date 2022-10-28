@@ -2,21 +2,43 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class YelpService {
 
+  results = []
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(
-    private http: HttpClient){ }
+    private http: HttpClient) { }
+  
+  getResults(){
+    return this.getResults;
+  }
+
+  getIPcoordinates(){
+    return this.http.get<any>("https://ipinfo.io/?token=4440474e851c76")
+  }
+
+  getYelpResults(term: string, category: string, distance: number, autoDetect: boolean):Observable<any>{
+
+      return this.http.get("https://ipinfo.io/?token=4440474e851c76").pipe(
+        switchMap((coordinates:any) => {
+          let coord = coordinates['loc'].split(",")
+          let lat = coord[0]
+          let lng = coord[1]
+          return this.http.get<any>(`http://localhost:8000/getyelpresults?term=${term}&latitude=${lat}&longitude=${lng}&categories=${category}&radius=${distance}`)
+        }),
+        catchError(error => of({"error": error}))
+      )
     
-  getYelpResults(): Observable<any> {
-    return this.http.get("http://localhost:8000/getyelpresults?term=food&latitude=34&longitude=-118&categories=all&radius=10000")
+    
+    
   }
 }

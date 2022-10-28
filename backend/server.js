@@ -53,7 +53,7 @@ app.get("/getyelpresults", async (req, res) => {
         let latitude = req_query.latitude
         let longitude = req_query.longitude
         let categories = req_query.categories
-        let radius = req_query.radius
+        let radius = Number(req_query.radius) * 1609
 
         let yelp_search_url = `https://api.yelp.com/v3/businesses/search?term=${term}&latitude=${latitude}&longitude=${longitude}&categories=${categories}&radius=${radius}`
         let yelp_response = await axios.get(yelp_search_url, axios_config)
