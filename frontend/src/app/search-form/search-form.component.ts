@@ -72,19 +72,12 @@ export class SearchFormComponent implements OnInit {
       });
   }
 
-
-  getResults(){
-    return this.yelpService.getYelpResults(this.searchForm.controls.inputKeyword.value!, this.searchForm.controls.selectCategory.value!,
-      this.searchForm.controls.inputDistance.value!, this.searchForm.controls.autoDetect.value!)
-  }
-
   onSubmit(): void {
     this.yelpService.getYelpResults(this.searchForm.controls.inputKeyword.value!, this.searchForm.controls.selectCategory.value!,
-      this.searchForm.controls.inputDistance.value!, this.searchForm.controls.autoDetect.value!)
+      this.searchForm.controls.inputDistance.value!, this.searchForm.controls.inputLocation.value!, this.searchForm.controls.autoDetect.value!)
       .subscribe(
         (response) => {
           this.results = response["businesses"]
-          console.log("results:" + this.results)
         this.submitted = true
   })
       

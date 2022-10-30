@@ -1,0 +1,31 @@
+.card{
+    width: 55%;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.back-arrow{
+    cursor: pointer;
+}
+
+.card-body .card-title{
+    text-align: center;
+}
+
+mat-tab-group{
+    margin-top: 3%;
+}
+
+.container{
+    margin-top: 5%;
+}
+
+::ng-deep .mat-tab-labels {
+    background-color: #ffd73f;
+  }
+  
+
+/* .mat-tab-body-content{
+    background-color: #ffffff;
+} */

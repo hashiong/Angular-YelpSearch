@@ -10,10 +10,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor = "let business of businesses">
+      <tr class = "result-body" *ngFor = "let business of businesses;let i = index" [routerLink]="['/detail/', business.id]">
+        <td><b>{{i+1}}</b></td>
+        <td><img src = {{business.image_url}}></td>
         <td>{{business.name}}</td>
+        <td>{{business.rating}}</td>
+        <td>{{business.distance}}</td>
       </tr>
-
     </tbody>
   </table>
 </div>

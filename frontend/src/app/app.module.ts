@@ -11,9 +11,12 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs'; 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { BusinessDetailComponent } from './business-detail/business-detail.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     SearchFormComponent,
     NavBarComponent,
     SearchResultsComponent,
+    BusinessDetailComponent,
     
   ],
   imports: [
@@ -33,6 +37,8 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     MatIconModule,
     MatButtonModule,
     MatAutocompleteModule,
+    MatTabsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
