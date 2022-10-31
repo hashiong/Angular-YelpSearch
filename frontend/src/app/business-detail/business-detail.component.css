@@ -17,14 +17,38 @@ mat-tab-group{
     margin-top: 3%;
 }
 
-.container{
-    margin-top: 5%;
+span > a > img{
+    width: 30px;
+    margin-left: 1%;
 }
+
+.map-container{
+    width: 100%;
+}
+  
+.carousel-item > img{
+    width: 290px;
+    height: 380px;
+}
+
+#reserve-button{
+    background-color:#dc3545;
+    border-color: #dc3545
+}
+
+#reserve-button:hover{
+    background-color:#ae3d41;
+    border-color: #ae3d41;
+}
+
 
 ::ng-deep .mat-tab-labels {
     background-color: #ffd73f;
   }
   
+  #reviews-table tr{
+    height:150px;
+  }
 
 /* .mat-tab-body-content{
     background-color: #ffffff;

@@ -5,7 +5,7 @@
     <mat-tab-group mat-align-tabs="center">
       <mat-tab label="Business details">
         <div class="container text-center">
-          <div class="row">
+          <div class="row mt-4">
             <div class="col-6">
               <h5>Address</h5>
             </div>
@@ -20,39 +20,108 @@
 
           <div class="row mt-4">
             <div class="col-6">
-              <h5>Address</h5>
+              <h5>Phone</h5>
             </div>
             <div class="col-6">
-              <h5>Category</h5>
+              <h5>Price Range</h5>
             </div>
           </div>
           <div class="row">
             <div class="col-6">12345 Street</div>
             <div class="col-6">Sushi</div>
           </div>
-          
+
           <div class="row mt-4">
             <div class="col-6">
-              <h5>Address</h5>
+              <h5>Status</h5>
             </div>
             <div class="col-6">
-              <h5>Category</h5>
+              <h5>Visit yelp for more</h5>
             </div>
           </div>
           <div class="row">
             <div class="col-6">12345 Street</div>
             <div class="col-6">Sushi</div>
           </div>
+          <div class = "row mt-4">
+            <div class = "col-12">
+              <a href="#" id = "reserve-button" class="btn btn-primary">Reserve Now</a>
+            </div>
+          </div>
+          <div class = "row mt-4">
+            <div class = "col">
+              Share on: <span><a class="twitter-share-button" target="_blank"
+                href="https://twitter.com/intent/tweet?text=Hello%20world%0Ahttps://www.yelp.com/biz/hearts-and-flame-los-angeles">
+              <img src = "../../assets/twitter.svg"></a>
+              </span><span><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.yelp.com/biz/hearts-and-flame-los-angeles"><img src = "../../assets/square-facebook.svg"></a></span>
+            </div>
+          </div>
+          <div class = "row mt-4">
+            <div class = "col">
+              <div id="detailCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="https://s3-media4.fl.yelpcdn.com/bphoto/psYCRCjufjyp9lm44OTdnQ/o.jpg" class="d-block mx-auto" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://s3-media2.fl.yelpcdn.com/bphoto/Go0RFhrw6qRbEpTfvC-ntw/o.jpg" class="d-block mx-auto" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://s3-media1.fl.yelpcdn.com/bphoto/2XlzfX5xtYhcVp-nVmWfFQ/o.jpg" class="d-block mx-auto" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#detailCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#detailCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          
+
+        </div>
+
+      
+      </mat-tab>
+      <mat-tab label="Map Location"><div class="my-google-map">
+        <div>
+          <google-map width = "100%"></google-map>
+          </div>
+      </div></mat-tab>
+      <mat-tab label="Reviews">
+        <div>
+          <table id = "reviews-table" class="table table-striped">
+            <tbody>
+              <tr>
+                <td>Mark
+                  Mark
+                  Mark
+                  MarkMarkMark
+                  \n
+                  MarkMark
+                  Mark
+                  Mark
+                </td>
+              </tr>
+              <tr>
+                <td>Jacob</td>
+              </tr>
+              <tr>
+                <td>Larry</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </mat-tab>
-      <mat-tab label="Map Location">Map Location</mat-tab>
-      <mat-tab label="Reviews">Reviews</mat-tab>
     </mat-tab-group>
     <br />
 
-    <p class="card-text">
-      With supporting text below as a natural lead-in to additional content.
-    </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+
+    
   </div>
 </div>

@@ -18,6 +18,8 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { BusinessDetailComponent } from './business-detail/business-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { GoogleMapsModule } from '@angular/google-maps'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +41,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatAutocompleteModule,
     MatTabsModule,
     AppRoutingModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

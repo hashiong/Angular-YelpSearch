@@ -64,7 +64,7 @@ app.get("/getyelpresults", async (req, res) => {
         if (response_data["total"] != 0) {
             response_data = response_data["businesses"]
 
-            let businesses = []
+            let businesses = {}
 
             for (let i = 0; i < response_data.length; i++) {
                 let business = {}
@@ -74,7 +74,7 @@ app.get("/getyelpresults", async (req, res) => {
                 business["image_url"] = response_data[i]["image_url"]
                 business["rating"] = response_data[i]["rating"]
                 business["distance"] = Number(response_data[i]["distance"] / 1609).toFixed(2)
-                businesses.push(business)
+                businesses[i] = business
             }
 
             response["businesses"] = businesses
@@ -121,6 +121,7 @@ app.get("/getbusinessdetail", async (req, res) => {
         let business = {}
         business["name"] = response_data["name"]
         business["photos"] = response_data["photos"]
+        business["coordinates"] = response_data["coordinates"]
 
         if (response_data["hours"][0]["is_open_now"] == true) {
             business["status"] = "Open"
@@ -133,8 +134,8 @@ app.get("/getbusinessdetail", async (req, res) => {
 
         if ("price" in response_data) {
             business["price"] = response_data["price"]
-            business["url"] = response_data["url"]
         }
+        business["url"] = response_data["url"]
 
 
         let category = ''
@@ -166,7 +167,7 @@ app.get("/getbusinessdetail", async (req, res) => {
                 transactions += " | "
             }
         }
-
+        
         business["category"] = category
         business["location"] = location
         business["transactions"] = transactions
@@ -178,4 +179,38 @@ app.get("/getbusinessdetail", async (req, res) => {
     catch (err) {
         res.status(400).send({ message: err })
     }
+})
+
+//API for getting yelp business reviews
+app.get("/getbusinessreviews", async (req, res) => {
+    try {
+        let id = req.query.id
+        let url = `https://api.yelp.com/v3/businesses/${id}/reviews`
+        let response = await axios.get(url, axios_config)
+        let response_data = await response.data
+    
+        let output = {}
+        if("reviews" in response_data){
+            response_data = response_data["reviews"]
+            
+            for (let i = 0; i < response_data.length; i++) {
+                let review = {}
+                review["name"] = response_data[i]["user"]["name"]
+                review["rating"] = response_data[i]["rating"]
+                review["text"] = response_data[i]["text"]
+                review["time"] = response_data[i]["time_created"]
+                output[i] = review
+                
+            }
+            return res.json(output)
+
+            
+        }
+        
+    }
+    catch (err) {
+        res.status(400).send({ message: err })
+    }
+
+
 })

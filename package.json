@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@angular/google-maps": "^14.2.6",
+    "bootstrap": "^5.2.2"
+  }
+}
