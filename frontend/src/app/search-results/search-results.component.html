@@ -1,22 +1,26 @@
-<div>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Image</th>
-        <th scope="col">Business Name</th>
-        <th scope="col">Rating</th>
-        <th scope="col">Distance(miles)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class = "result-body" *ngFor = "let business of businesses;let i = index" [routerLink]="['/detail/', business.id]">
-        <td><b>{{i+1}}</b></td>
-        <td><img src = {{business.image_url}}></td>
-        <td>{{business.name}}</td>
-        <td>{{business.rating}}</td>
-        <td>{{business.distance}}</td>
-      </tr>
-    </tbody>
-  </table>
+<div *ngIf="showResults && !showDetails">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Image</th>
+          <th scope="col">Business Name</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Distance(miles)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="result-body" *ngFor="let business of businesses; let i = index" (click) = 'onSelected(business.id)'>
+          <td><b>{{i+1}}</b></td>
+          <td><img src={{business.image_url}}></td>
+          <td>{{business.name}}</td>
+          <td>{{business.rating}}</td>
+          <td>{{business.distance}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<div *ngIf="showResults && showDetails">
+  <app-business-detail [id] = "selected_id" [details] = "details" [reviews] = "reviews"></app-business-detail>
 </div>

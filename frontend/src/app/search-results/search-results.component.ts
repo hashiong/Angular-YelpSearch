@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-
+import { forkJoin, mergeMap } from 'rxjs';
 import { YelpService } from '../yelp.service';
 
 
@@ -11,13 +9,28 @@ import { YelpService } from '../yelp.service';
   styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent implements OnInit {
-  @Input() businesses:any;
+  @Input() showResults:boolean = false;
+  @Input() showDetails:boolean = false;
+
+  @Input() businesses:any =[];
+
+  selected_id:string = "";
+  details:any = [];
+  reviews:any = [];
  
   constructor(private yelpService: YelpService){
 
   }
 
-  onSelected() {
+  onSelected(id:string) {
+    this.selected_id = id;
+   
+    forkJoin([this.yelpService.getYelpDetails(id), this.yelpService.getYelpReviews(id)]
+    ).subscribe((response) => {
+      this.details = response[0];
+      this.reviews = response[1];
+      this.showDetails = true;
+    })
   }
 
 

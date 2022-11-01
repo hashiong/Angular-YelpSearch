@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-business-detail',
@@ -8,20 +7,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BusinessDetailComponent implements OnInit {
 
-  id: String | undefined;
-  details: boolean = false;
+  @Input() id:string = "";
+  @Input() details:any = [];
+  @Input() reviews:any = [];
 
-  constructor(private route: ActivatedRoute,) { }
+ 
+  
+  constructor() { }
 
   ngOnInit(): void {
     console.log("detail inited")
-    this.getID();
   }
 
-  getID(): void{
-    this.id = this.route.snapshot.paramMap.get('id')!;
-    console.log("Detail! " + this.id)
-  }
+
 
   goBack(){
     

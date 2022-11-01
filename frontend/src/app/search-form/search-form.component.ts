@@ -34,8 +34,8 @@ export class SearchFormComponent implements OnInit {
   filteredResults: any;
   isLoading = false;
   errorMsg!: string;
-  results:any = [];
-  submitted = false;
+  results:any;
+  showResults:boolean = false;
 
   constructor(private http: HttpClient, private yelpService: YelpService, private formBuilder: FormBuilder) {
   }
@@ -78,7 +78,8 @@ export class SearchFormComponent implements OnInit {
       .subscribe(
         (response) => {
           this.results = response["businesses"]
-        this.submitted = true
+          console.log(this.results)
+          this.showResults = true
   })
       
     
@@ -106,7 +107,7 @@ export class SearchFormComponent implements OnInit {
     this.searchForm.reset()
     this.searchForm.controls.inputDistance.setValue(10)
     this.searchForm.controls.selectCategory.setValue("all")
-    this.submitted = false
+    this.showResults = false
   }
 
   clearSelection() {

@@ -51,10 +51,9 @@
     </form>
 
 </div>
+<div *ngIf="showResults"><app-search-results [businesses]="results" [showResults] = "showResults"></app-search-results></div>
 
-<div *ngIf="submitted">
-    <app-search-results [businesses]="results.slice(0, 10)"></app-search-results>
-</div>
+
 
     
 

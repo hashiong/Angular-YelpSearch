@@ -9,8 +9,6 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 })
 export class YelpService {
 
-  results = []
-
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -22,8 +20,16 @@ export class YelpService {
     return this.getResults;
   }
 
-  getIPcoordinates() {
+  getIPcoordinates():Observable<any> {
     return this.http.get<any>("https://ipinfo.io/?token=4440474e851c76")
+  }
+
+  getYelpReviews(id:string):Observable<any>{
+    return this.http.get(`http://localhost:8000/getbusinessreviews?id=${id}`)
+  }
+
+  getYelpDetails(id:string):Observable<any> {
+    return this.http.get(`http://localhost:8000/getbusinessdetails?id=${id}`)
   }
 
   getYelpResults(term: string, category: string, distance: number, location: string, autoDetect: boolean): Observable<any> {
