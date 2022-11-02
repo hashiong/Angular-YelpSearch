@@ -1,28 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-business-detail',
   templateUrl: './business-detail.component.html',
-  styleUrls: ['./business-detail.component.css']
+  styleUrls: ['./business-detail.component.css'],
 })
 export class BusinessDetailComponent implements OnInit {
+  @Input() id: string = '';
+  @Input() details: any = [];
+  @Input() reviews: any = [];
+  @Output() detail_status = new EventEmitter<boolean>();
 
-  @Input() id:string = "";
-  @Input() details:any = [];
-  @Input() reviews:any = [];
-
- 
-  
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    console.log("detail inited")
+    console.log('detail inited');
   }
 
-
-
-  goBack(){
-    
+  goBack() {
+    this.detail_status.emit(false);
   }
-
 }

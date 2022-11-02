@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <span class="back-arrow" (clcik)="goBack()">←</span>
+    <span class="back-arrow" (click)="goBack()">←</span>
     <h4 class="card-title">{{ this.details["name"] }}</h4>
     <mat-tab-group mat-align-tabs="center">
       <mat-tab label="Business details">
@@ -40,7 +40,11 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-6">{{ this.details["status"] }}</div>
+            <div *ngIf="this.details['status'] === 'Open now'; else isClosed " class="col-6" style="color:green;">{{ this.details["status"] }}</div>
+            <ng-template #isClosed>
+              <div class="col-6" style="color:red;">{{ this.details["status"] }}</div>
+            </ng-template>
+            
             <div class="col-6">
               <a href="{{this.details['url']}}" target="_blank">Business Link</a>
             </div>

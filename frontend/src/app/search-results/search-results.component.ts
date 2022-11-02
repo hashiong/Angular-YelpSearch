@@ -8,16 +8,16 @@ import { YelpService } from '../yelp.service';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.css']
 })
+
 export class SearchResultsComponent implements OnInit {
   @Input() showResults:boolean = false;
   @Input() showDetails:boolean = false;
-
   @Input() businesses:any =[];
 
   selected_id:string = "";
   details:any = [];
   reviews:any = [];
- 
+  
   constructor(private yelpService: YelpService){
 
   }
@@ -34,7 +34,9 @@ export class SearchResultsComponent implements OnInit {
   }
 
 
-
+  getDetailStatus(status: boolean){
+    this.showDetails = status;
+  }
 
   ngOnInit() {
   }

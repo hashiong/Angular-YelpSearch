@@ -19,6 +19,18 @@
     border-color: #ae3d41;
 }
 
+.error-msg{
+    width: 30%;
+    font-size: large;
+    color: #ae3d41;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    text-align: center;
+    border-radius: 15px;
+    background-color: #ffffff;
+}
+
 @media only screen and (max-width: 768px) {
     .search-form{
         width: 90%;

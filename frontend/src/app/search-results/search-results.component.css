@@ -12,3 +12,7 @@ img{
     width: 108px;
     height: 108px;
 }
+
+tbody > tr{
+    cursor: pointer;
+}

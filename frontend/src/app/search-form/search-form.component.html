@@ -37,7 +37,7 @@
                 <label class="form-check-label" for="autoDetect">
                     Auto-dectet my location
                 </label>
-                <input class="form-check-input" #checkbox type="checkbox" (click)="checkOnChange(checkbox.checked)" id="autoDetect" />
+                <input class="form-check-input" formControlName = "autoDetect" #checkbox type="checkbox" (click)="checkOnChange(checkbox.checked)" id="autoDetect" />
             </div>
         </div>
 
@@ -51,7 +51,8 @@
     </form>
 
 </div>
-<div *ngIf="showResults"><app-search-results [businesses]="results" [showResults] = "showResults"></app-search-results></div>
+<div *ngIf = "showErrorMsg" class = "error-msg"> No results available</div>
+<div *ngIf="showResults"><app-search-results [businesses]="this.results" [showResults] = "this.showResults" [showDetails]="this.showDetails"></app-search-results></div>
 
 
 
