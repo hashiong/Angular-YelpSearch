@@ -1,5 +1,6 @@
-<div *ngIf="showResults && !showDetails">
-    <table class="table table-striped">
+
+  <div *ngIf="showResults && !showDetails">
+    <table class="table table-striped table-sm">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -24,3 +25,4 @@
 <div *ngIf="showResults && showDetails">
   <app-business-detail (detail_status)="getDetailStatus($event)" [id] = "selected_id" [details] = "details" [reviews] = "reviews"></app-business-detail>
 </div>
+
