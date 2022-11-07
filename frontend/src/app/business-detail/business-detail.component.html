@@ -40,53 +40,113 @@
             </div>
           </div>
           <div class="row">
-            <div *ngIf="this.details['status'] === 'Open now'; else isClosed " class="col-6" style="color:green;">{{ this.details["status"] }}</div>
+            <div
+              *ngIf="this.details['status'] === 'Open now'; else isClosed"
+              class="col-6"
+              style="color: green"
+            >
+              {{ this.details["status"] }}
+            </div>
             <ng-template #isClosed>
-              <div class="col-6" style="color:red;">{{ this.details["status"] }}</div>
+              <div
+                *ngIf="this.details['status'] !== 'N/A'"
+                class="col-6"
+                style="color: red"
+              >
+                {{ this.details["status"] }}
+              </div>
+              <div *ngIf="this.details['status'] === 'N/A'" class="col-6">
+                {{ this.details["status"] }}
+              </div>
             </ng-template>
-            
+
             <div class="col-6">
-              <a href="{{this.details['url']}}" target="_blank">Business Link</a>
+              <a href="{{ this.details['url'] }}" target="_blank"
+                >Business Link</a
+              >
             </div>
           </div>
           <div class="row mt-4">
             <div class="col-12">
-              <a href="#" id="reserve-button" class="btn btn-primary">Reserve Now</a>
+              <button
+                id="reserve-button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#reserveModal"
+              >
+                Reserve Now
+              </button>
             </div>
           </div>
 
           <div class="row mt-4">
             <div class="col">
               Share on:
-              <span><a class="twitter-share-button" target="_blank"
-                  href="https://twitter.com/intent/tweet?text=Hello%20world%0Ahttps://www.yelp.com/biz/hearts-and-flame-los-angeles">
-                  <img src="../../assets/twitter.svg" /></a> </span><span><a target="_blank"
-                  href="https://www.facebook.com/sharer/sharer.php?u=https://www.yelp.com/biz/hearts-and-flame-los-angeles"><img
-                    src="../../assets/square-facebook.svg" /></a></span>
+              <span
+                ><a
+                  class="twitter-share-button"
+                  target="_blank"
+                  href="https://twitter.com/intent/tweet?text=Hello%20world%0Ahttps://www.yelp.com/biz/hearts-and-flame-los-angeles"
+                >
+                  <img src="../../assets/twitter.svg"
+                /></a> </span
+              ><span
+                ><a
+                  target="_blank"
+                  href="https://www.facebook.com/sharer/sharer.php?u=https://www.yelp.com/biz/hearts-and-flame-los-angeles"
+                  ><img src="../../assets/square-facebook.svg" /></a
+              ></span>
             </div>
           </div>
           <div class="row mt-4">
             <div class="col">
-              <div id="detailCarousel" class="carousel slide" data-bs-ride="carousel">
+              <div
+                id="detailCarousel"
+                class="carousel slide"
+                data-bs-ride="carousel"
+              >
                 <div class="carousel-inner">
-                  <div *ngFor="
+                  <div
+                    *ngFor="
                       let photo of this.details['photos'];
                       first as isFirst
-                    " [ngClass]="
+                    "
+                    [ngClass]="
                       isFirst ? 'carousel-item active' : 'carousel-item'
-                    ">
-                    <img src="{{ photo }}" class="d-block mx-auto" alt="photo" />
+                    "
+                  >
+                    <img
+                      src="{{ photo }}"
+                      class="d-block mx-auto"
+                      alt="photo"
+                    />
                   </div>
                 </div>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#detailCarousel"
-                  data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#detailCarousel"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    style="filter: invert(100%)"
+                    aria-hidden="true"
+                  ></span>
                   <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#detailCarousel"
-                  data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#detailCarousel"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    style="filter: invert(100%)"
+                    aria-hidden="true"
+                  ></span>
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>
@@ -108,24 +168,115 @@
           <table id="reviews-table" class="table table-striped">
             <tbody>
               <tr *ngFor="let review of this.reviews">
-                <td><b>{{review["name"]}}</b>
-                  <br>
-                  Rating:{{review["rating"]}}/5
-                  <br>
-                  <br>
-                  {{review["text"]}}
-                  <br>
-                  <br>
-                  {{review["time"].slice(0, 10)}}
-                  <br>
+                <td>
+                  <b>{{ review["name"] }}</b>
+                  <br />
+                  Rating:{{ review["rating"] }}/5
+                  <br />
+                  <br />
+                  {{ review["text"] }}
+                  <br />
+                  <br />
+                  {{ review["time"].slice(0, 10) }}
+                  <br />
                 </td>
               </tr>
-
             </tbody>
           </table>
         </div>
       </mat-tab>
     </mat-tab-group>
     <br />
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="reserveModal"
+  tabindex="-1"
+  aria-labelledby="reserveModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Reservation Form</h5>
+      </div>
+      <div class="modal-body">
+        <form
+          id="reservationForm"
+          class="row g-1 needs-validation"
+          [class.was-validated]="formValidation"
+          [formGroup]="reservationForm"
+          (ngSubmit)="onSubmit()"
+          novalidate
+        >
+          <div class="col-12" style="text-align: center; font-size: x-large">
+            {{ this.details.name }}
+          </div>
+          <div class="col-12">
+            <label for="inputEmail" class="col-form-label">Email</label>
+            <input
+              type="email"
+              id="inputEmail"
+              formControlName="inputEmail"
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">Email is Required</div>
+          </div>
+          <div class="col-12">
+            <label for="inputDate" class="col-form-label">Date</label>
+            <input
+              type="date"
+              formControlName="inputDate"
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">Date is Required</div>
+          </div>
+          <div class="col-12" style="margin-top: 3%">Time</div>
+          <div class="col-3">
+            <select class="form-select" formControlName="inputHour" required>
+              <option *ngFor="let hour of hourOptions" [value]="hour.value">
+                {{ hour.name }}
+              </option>
+            </select>
+          </div>
+          <div
+            class="col-1"
+            style="text-align: center; font-size: large; width: 3%"
+          >
+            :
+          </div>
+          <div class="col-3">
+            <select class="form-select" formControlName="inputMinute" required>
+              <option *ngFor="let min of minuteOptions" [value]="min.value">
+                {{ min.name }}
+              </option>
+            </select>
+          </div>
+          <div class="col-1">
+            <span><img src="../../assets/clock-regular.svg" /></span>
+          </div>
+
+          <div class="col-12 mt-3" style="text-align: center">
+            <button
+              type="submit"
+              value="Submit"
+              id="submit-button"
+              class="btn btn-primary"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
   </div>
 </div>
