@@ -1,13 +1,13 @@
 
-.nav-tabs .nav-item .nav-link.active {
-    color: #0080FF;
-  }
-
-  .nav-tabs .nav-item .nav-link {
-    background-color: #0080FF;
-    color: #FFF;
-  }
+li > a{
+  color: black;
+}
 
 .nav.justify-content-end{
     margin-right: 3%;
+}
+
+.active {
+  border: 2px solid black;
+  border-radius: 20px;
 }
