@@ -3,7 +3,7 @@
     <form id="searchForm" class="row g-3" [formGroup]="searchForm" (ngSubmit)="onSubmit()" ngNativeValidate>
         <div class="col-12">
             <label for="inputKeyword" class="form-label">Keywords <span style="color: red;">*</span></label>
-            <input class="form-control" id = "selectedResult" matInput [matAutocomplete]="auto"
+            <input class="form-control" id="selectedResult" matInput [matAutocomplete]="auto"
                 formControlName="inputKeyword" required>
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelected()" [displayWith]="displayWith">
                 <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
@@ -17,19 +17,19 @@
 
         <div class="col-md-6">
             <label for="inputDistance" class="form-label">Distance</label>
-            <input type="number" class="form-control" formControlName = "inputDistance" placeholder="10"  required/>
+            <input type="number" class="form-control" formControlName="inputDistance" placeholder="10" required />
         </div>
 
         <div class="col-md-6">
             <label for="selectCategory" class="form-label">Category <span style="color: red;">*</span></label>
-            <select class="form-select" id = "selectCategory" formControlName = "selectCategory">
+            <select class="form-select" id="selectCategory" formControlName="selectCategory">
                 <option *ngFor="let category of categoryOptions" [value]="category.value">{{ category.name }}</option>
             </select>
         </div>
 
         <div class="col-12">
             <label for="inputLocation" class="form-label">Location <span style="color: red;">*</span></label>
-            <input type="text" class="form-control" id ="inputLocation" formControlName = "inputLocation" required/>
+            <input type="text" class="form-control" id="inputLocation" formControlName="inputLocation" required />
         </div>
 
         <div class="col-12">
@@ -37,7 +37,8 @@
                 <label class="form-check-label" for="autoDetect">
                     Auto-dectet my location
                 </label>
-                <input class="form-check-input" formControlName = "autoDetect" #checkbox type="checkbox" (click)="checkOnChange(checkbox.checked)" id="autoDetect" />
+                <input class="form-check-input" formControlName="autoDetect" #checkbox type="checkbox"
+                    (click)="checkOnChange(checkbox.checked)" id="autoDetect" />
             </div>
         </div>
 
@@ -45,16 +46,14 @@
             <button type="submit" id="Search" value="Submit" class="btn btn-primary">Submit</button>
         </div>
         <div class="col-6 clear">
-            <button type="clear" class="btn btn-primary" (click)="clear()" >Clear</button>
+            <button type="clear" class="btn btn-primary" (click)="clear()">Clear</button>
         </div>
 
     </form>
 
 </div>
-<div *ngIf = "showErrorMsg" class = "error-msg"> No results available</div>
-<div *ngIf="showResults"><app-search-results [businesses]="this.results" [showResults] = "this.showResults" [showDetails]="this.showDetails"></app-search-results></div>
-
-
-
-    
-
+<div *ngIf="showErrorMsg" class="error-msg"> No results available</div>
+<div *ngIf="showResults">
+    <app-search-results [businesses]="this.results" [showResults]="this.showResults" [showDetails]="this.showDetails">
+    </app-search-results>
+</div>

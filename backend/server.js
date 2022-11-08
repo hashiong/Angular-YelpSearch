@@ -3,13 +3,36 @@ const cors = require("cors");
 const axios = require("axios");
 
 const app = express();
+
+// For Cross-Origin Resource Sharing
+
 app.use(
 	cors({
 		origin: "*",
 	})
 );
 
-const port = 8000;
+const port = process.env.PORT || 8080;
+
+const path = require("path");
+
+const publicPath = path.join(__dirname, "/dist/yelp-app");
+
+app.use(express.static(publicPath));
+
+app.listen(port, () => {
+	console.log(`Server is up on ${port}`);
+});
+
+app.get("/search", (req, res) => {
+	res.sendFile(path.join(__dirname + "/dist/yelp-app/index.html"));
+});
+
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname + "/dist/yelp-app/index.html"));
+// });
+
+
 
 const axios_config = {
 	headers: {
@@ -19,10 +42,6 @@ const axios_config = {
 };
 
 // let test ="http://localhost:8000/getyelpresults?term=food&latitude=34&longitude=-118&categories=all&radius=10000"
-
-app.listen(port, () => {
-	console.log("Listening on port " + port);
-});
 
 //API for term autocomplete
 app.get("/yelpautocomplete", async (req, res) => {
@@ -75,9 +94,9 @@ app.get("/getyelpresults", async (req, res) => {
 				business["url"] = response_data[i]["url"];
 				business["image_url"] = response_data[i]["image_url"];
 				business["rating"] = response_data[i]["rating"];
-				business["distance"] = Number(
+				business["distance"] = Math.round(Number(
 					response_data[i]["distance"] / 1609
-				).toFixed(2);
+				));
 				businesses.push(business);
 			}
 

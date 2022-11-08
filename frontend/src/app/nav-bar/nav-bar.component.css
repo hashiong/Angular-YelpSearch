@@ -1,13 +1,19 @@
-
-li > a{
+li > a {
   color: black;
 }
 
-.nav.justify-content-end{
-    margin-right: 3%;
+.nav.justify-content-end {
+  margin-right: 3%;
 }
 
 .active {
   border: 2px solid black;
   border-radius: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-bar {
+    margin-top: 2%;
+    margin-right: 3%;
+  }
 }

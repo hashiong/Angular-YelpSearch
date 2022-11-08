@@ -2,162 +2,101 @@
   <div class="card-body">
     <span class="back-arrow" (click)="goBack()">←</span>
     <h4 class="card-title">{{ this.details["name"] }}</h4>
-    <mat-tab-group mat-align-tabs="center">
+    <mat-tab-group mat-align-tabs="center" backgroundColor="accent" style='min-height:300px'>
       <mat-tab label="Business details">
         <div class="container text-center">
           <div class="row mt-4">
-            <div class="col-6">
-              <h5>Address</h5>
+            <div class="col-sm-6 mt-4">
+              <label for="detailLocation">Address</label>
+              <div id="detailLocation">{{ this.details["location"] }}</div>
             </div>
-            <div class="col-6">
-              <h5>Category</h5>
+            <div class="col-sm-6 mt-4">
+              <label for="detailCategory">Category</label>
+              <div id="detailCategory">{{ this.details["category"] }}</div>
             </div>
           </div>
           <div class="row">
-            <div class="col-6">{{ this.details["location"] }}</div>
-            <div class="col-6">{{ this.details["category"] }}</div>
+            <div class="col-sm-6 mt-4">
+              <label for="detailPhone">Phone</label>
+              <div id="detailPhone">{{ this.details["display_phone"] }}</div>
+            </div>
+            <div class="col-sm-6 mt-4">
+              <label for="detailPrice">Price Range</label>
+              <div id="detailPrice">{{ this.details["price"] }}</div>
+            </div>
           </div>
 
-          <div class="row mt-4">
-            <div class="col-6">
-              <h5>Phone</h5>
-            </div>
-            <div class="col-6">
-              <h5>Price Range</h5>
-            </div>
-          </div>
           <div class="row">
-            <div class="col-6">{{ this.details["display_phone"] }}</div>
-            <div class="col-6">{{ this.details["price"] }}</div>
-          </div>
-
-          <div class="row mt-4">
-            <div class="col-6">
-              <h5>Status</h5>
-            </div>
-            <div class="col-6">
-              <h5>Visit yelp for more</h5>
-            </div>
-          </div>
-          <div class="row">
-            <div
-              *ngIf="this.details['status'] === 'Open now'; else isClosed"
-              class="col-6"
-              style="color: green"
-            >
-              {{ this.details["status"] }}
-            </div>
-            <ng-template #isClosed>
-              <div
-                *ngIf="this.details['status'] !== 'N/A'"
-                class="col-6"
-                style="color: red"
-              >
+            <div class="col-sm-6 mt-4">
+              <label for="detailStatus">Status</label>
+              <div *ngIf="this.details['status'] === 'Open now'; else isClosed" id="detailStatus" style="color: green">
                 {{ this.details["status"] }}
               </div>
-              <div *ngIf="this.details['status'] === 'N/A'" class="col-6">
-                {{ this.details["status"] }}
+              <ng-template #isClosed>
+                <div *ngIf="this.details['status'] !== 'N/A'" id="detailStatus" style="color: red">
+                  {{ this.details["status"] }}
+                </div>
+                <div *ngIf="this.details['status'] === 'N/A'" id="detailStatus">
+                  {{ this.details["status"] }}
+                </div>
+              </ng-template>
+            </div>
+            <div class="col-sm-6 mt-4">
+              <label for="detailUrl">Visit yelp for more</label>
+              <div id="detailUrl">
+                <a href="{{ this.details['url'] }}" target="_blank">Business Link</a>
               </div>
-            </ng-template>
-
-            <div class="col-6">
-              <a href="{{ this.details['url'] }}" target="_blank"
-                >Business Link</a
-              >
             </div>
           </div>
+
           <div class="row mt-4">
             <div *ngIf="!this.booked; else Booked" class="col-12">
-              <button
-                id="reserve-button"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#reserveModal"
-              >
+              <button id="reserve-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reserveModal">
                 Reserve Now
               </button>
             </div>
             <ng-template #Booked>
-              <div class = "col-12">
-              <button
-              id="cancel-button"
-              class="btn btn-primary"
-              (click)="deleteBooking(this.details.name)"
-            >
-              Cancel reservation
-            </button>
-          </div>
+              <div class="col-12">
+                <button id="cancel-button" class="btn btn-primary" (click)="deleteBooking(this.details.name)">
+                  Cancel reservation
+                </button>
+              </div>
             </ng-template>
           </div>
 
           <div class="row mt-4">
             <div class="col">
               Share on:
-              <span
-                ><a
-                  class="twitter-share-button"
-                  target="_blank"
-                  href="https://twitter.com/intent/tweet?text=Check {{this.details.name}} on Yelp.%0A{{this.details.url}}"
-                >
-                  <img src="../../assets/twitter.svg"
-                /></a> </span
-              ><span
-                ><a
-                  target="_blank"
-                  href="https://www.facebook.com/sharer/sharer.php?u={{this.details.url}}"
-                  ><img src="../../assets/square-facebook.svg" /></a
-              ></span>
+              <span><a class="twitter-share-button" target="_blank" href="https://twitter.com/intent/tweet?text=Check {{
+                    this.details.name
+                  }} on Yelp.%0A{{ this.details.url }}">
+                  <img src="../../assets/twitter.svg" /></a> </span><span><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{
+                    this.details.url
+                  }}"><img src="../../assets/square-facebook.svg" /></a></span>
             </div>
           </div>
           <div class="row mt-4">
             <div class="col">
-              <div
-                id="detailCarousel"
-                class="carousel slide"
-                data-bs-ride="carousel"
-              >
+              <div id="detailCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                  <div
-                    *ngFor="
+                  <div *ngFor="
                       let photo of this.details['photos'];
                       first as isFirst
-                    "
-                    [ngClass]="
+                    " [ngClass]="
                       isFirst ? 'carousel-item active' : 'carousel-item'
-                    "
-                  >
-                    <img
-                      src="{{ photo }}"
-                      class="d-block mx-auto"
-                      alt="photo"
-                    />
+                    ">
+                    <img src="{{ photo }}" class="d-block mx-auto" alt="photo" />
                   </div>
                 </div>
 
-                <button
-                  class="carousel-control-prev"
-                  type="button"
-                  data-bs-target="#detailCarousel"
-                  data-bs-slide="prev"
-                >
-                  <span
-                    class="carousel-control-prev-icon"
-                    style="filter: invert(100%)"
-                    aria-hidden="true"
-                  ></span>
+                <button class="carousel-control-prev" type="button" data-bs-target="#detailCarousel"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" style="filter: invert(100%)" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
                 </button>
-                <button
-                  class="carousel-control-next"
-                  type="button"
-                  data-bs-target="#detailCarousel"
-                  data-bs-slide="next"
-                >
-                  <span
-                    class="carousel-control-next-icon"
-                    style="filter: invert(100%)"
-                    aria-hidden="true"
-                  ></span>
+                <button class="carousel-control-next" type="button" data-bs-target="#detailCarousel"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" style="filter: invert(100%)" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>
@@ -168,8 +107,8 @@
       <mat-tab label="Map Location">
         <div class="my-google-map">
           <div>
-            <google-map width="100%" [center]="this.details['coordinates']">
-              <map-marker [position]="this.details['coordinates']"></map-marker>
+            <google-map width="100%" [center]="this.details['coordinates'] || ''">
+              <map-marker [position]="this.details['coordinates'] || ''"></map-marker>
             </google-map>
           </div>
         </div>
@@ -201,44 +140,27 @@
   </div>
 </div>
 
-
-<div class="modal fade" id="reserveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="reserveModal" aria-hidden="true">
+<div class="modal fade" id="reserveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="reserveModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="ModalLabel">Reservation Form</h5>
       </div>
       <div class="modal-body">
-        <form
-          id="reservationForm"
-          class="row g-1 needs-validation"
-          [class.was-validated]="formValidation"
-          [formGroup]="reservationForm"
-          (ngSubmit)="onSubmit()"
-          novalidate
-        >
+        <form id="reservationForm" class="row g-1 needs-validation" [class.was-validated]="formValidation"
+          [formGroup]="reservationForm" (ngSubmit)="onSubmit()" novalidate>
           <div class="col-12" style="text-align: center; font-size: x-large">
             {{ this.details.name }}
           </div>
           <div class="col-12">
             <label for="inputEmail" class="col-form-label">Email</label>
-            <input
-              type="email"
-              id="inputEmail"
-              formControlName="inputEmail"
-              class="form-control"
-              required
-            />
+            <input type="email" id="inputEmail" formControlName="inputEmail" class="form-control" required />
             <div class="invalid-feedback">Email is Required</div>
           </div>
           <div class="col-12">
             <label for="inputDate" class="col-form-label">Date</label>
-            <input
-              type="date"
-              formControlName="inputDate"
-              class="form-control"
-              required
-            />
+            <input type="date" formControlName="inputDate" class="form-control" required />
             <div class="invalid-feedback">Date is Required</div>
           </div>
           <div class="col-12" style="margin-top: 3%">Time</div>
@@ -249,10 +171,7 @@
               </option>
             </select>
           </div>
-          <div
-            class="col-1"
-            style="text-align: center; font-size: large; width: 3%"
-          >
+          <div class="col-1" style="text-align: center; font-size: large; width: 3%">
             :
           </div>
           <div class="col-3">
@@ -267,19 +186,15 @@
           </div>
 
           <div class="col-12 mt-3" style="text-align: center">
-            <button
-              type="submit"
-              value="Submit"
-              id="submit-button"
-              class="btn btn-primary"
-            >
+            <button type="submit" value="Submit" id="submit-button" class="btn btn-primary">
               Submit
             </button>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" #closeButton class="btn btn-secondary" style="background-color:black" data-bs-dismiss="modal">
+        <button type="button" #closeButton class="btn btn-secondary" style="background-color: black"
+          data-bs-dismiss="modal">
           Close
         </button>
       </div>

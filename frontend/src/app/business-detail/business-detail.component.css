@@ -3,6 +3,7 @@
   margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 20px;
 }
 
 .back-arrow {
@@ -61,14 +62,22 @@ span > img {
   border-color: #ced4da;
 }
 
-::ng-deep .mat-tab-labels {
-  background-color: #ffd73f;
-}
-
 #reviews-table tr {
   height: 150px;
 }
 
-/* .mat-tab-body-content{
-    background-color: #ffffff;
-} */
+label {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 2%;
+}
+
+@media only screen and (max-width: 768px) {
+  .card {
+    width: 95%;
+  }
+
+  h4 {
+    font-weight: normal;
+  }
+}

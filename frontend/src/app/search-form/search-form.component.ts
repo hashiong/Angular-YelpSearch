@@ -64,7 +64,7 @@ export class SearchFormComponent implements OnInit {
         }),
         switchMap((value) =>
           this.http
-            .get('http://localhost:8000/yelpautocomplete?text=' + value)
+            .get('./yelpautocomplete?text=' + value)
             .pipe(
               finalize(() => {
                 this.isLoading = false;
@@ -86,7 +86,7 @@ export class SearchFormComponent implements OnInit {
   onSubmit(): void {
     this.showDetails = false;
     this.showResults = false;
-    this.showErrorMsg = false
+    this.showErrorMsg = false;
     this.yelpService
       .getYelpResults(
         this.searchForm.controls.inputKeyword.value!,
@@ -96,24 +96,21 @@ export class SearchFormComponent implements OnInit {
         this.searchForm.controls.autoDetect.value!
       )
       .subscribe((response) => {
-        if(response?.businesses !== undefined){
-          if(response.businesses.length > 0){
+        if (response?.businesses !== undefined) {
+          if (response.businesses.length > 0) {
             this.results = response['businesses'];
             this.showResults = true;
+          } else {
+            this.showErrorMsg = true;
           }
-          else{
-            this.showErrorMsg = true
-          }
-        }
-        else{
-          this.showErrorMsg = true
+        } else {
+          this.showErrorMsg = true;
         }
       });
   }
 
   onSelected() {
     this.selectedResult = this.selectedResult;
-    console.log(this.selectedResult);
   }
 
   checkOnChange(checked: boolean) {
@@ -134,7 +131,7 @@ export class SearchFormComponent implements OnInit {
     this.searchForm.get('inputLocation')?.enable();
     this.showResults = false;
     this.showDetails = false;
-    this.showErrorMsg = false
+    this.showErrorMsg = false;
     this.filteredResults = [];
   }
 

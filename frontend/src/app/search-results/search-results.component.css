@@ -1,31 +1,40 @@
-.table{
-    background-color: white;
-    width: 75%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 15px;
-    margin-top: 5%;
-    text-align: center;
+.searchResults {
+  margin-top: 5%;
 }
 
-img{
-    width: 108px;
-    height: 108px;
+.table {
+  background-color: white;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+  text-align: center;
 }
 
-tbody > tr{
-    cursor: pointer;
+img {
+  width: 108px;
+  height: 108px;
+}
+
+tbody > tr {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {
-    .table{
-        width: auto;
-        font-size: 13px;
-        padding: 1px;
-        width: 96%;
-    }
-    img{
-        width: 50px;
-        height: 50px;
-    }
+  .searchResults {
+    margin-top: 10%;
+  }
+  .table {
+    width: auto;
+    font-size: 12px;
+    padding: 1px;
+    width: 96%;
+  }
+  thead {
+    height: 4px;
+  }
+  img {
+    width: 50px;
+    height: 50px;
+  }
 }
