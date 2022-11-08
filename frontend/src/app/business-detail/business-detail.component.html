@@ -67,7 +67,7 @@
             </div>
           </div>
           <div class="row mt-4">
-            <div class="col-12">
+            <div *ngIf="!this.booked; else Booked" class="col-12">
               <button
                 id="reserve-button"
                 class="btn btn-primary"
@@ -77,6 +77,17 @@
                 Reserve Now
               </button>
             </div>
+            <ng-template #Booked>
+              <div class = "col-12">
+              <button
+              id="cancel-button"
+              class="btn btn-primary"
+              (click)="deleteBooking(this.details.name)"
+            >
+              Cancel reservation
+            </button>
+          </div>
+            </ng-template>
           </div>
 
           <div class="row mt-4">
@@ -86,14 +97,14 @@
                 ><a
                   class="twitter-share-button"
                   target="_blank"
-                  href="https://twitter.com/intent/tweet?text=Hello%20world%0Ahttps://www.yelp.com/biz/hearts-and-flame-los-angeles"
+                  href="https://twitter.com/intent/tweet?text=Check {{this.details.name}} on Yelp.%0A{{this.details.url}}"
                 >
                   <img src="../../assets/twitter.svg"
                 /></a> </span
               ><span
                 ><a
                   target="_blank"
-                  href="https://www.facebook.com/sharer/sharer.php?u=https://www.yelp.com/biz/hearts-and-flame-los-angeles"
+                  href="https://www.facebook.com/sharer/sharer.php?u={{this.details.url}}"
                   ><img src="../../assets/square-facebook.svg" /></a
               ></span>
             </div>
@@ -190,17 +201,12 @@
   </div>
 </div>
 
-<div
-  class="modal fade"
-  id="reserveModal"
-  tabindex="-1"
-  aria-labelledby="reserveModal"
-  aria-hidden="true"
->
+
+<div class="modal fade" id="reserveModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="reserveModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Reservation Form</h5>
+        <h5 class="modal-title" id="ModalLabel">Reservation Form</h5>
       </div>
       <div class="modal-body">
         <form
@@ -273,7 +279,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        <button type="button" #closeButton class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
       </div>

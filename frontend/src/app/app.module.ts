@@ -18,7 +18,8 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { BusinessDetailComponent } from './business-detail/business-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MyBookingsComponent } from './my-bookings/my-bookings.component'
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { GoogleMapsModule } from '@angular/google-maps'
     NavBarComponent,
     SearchResultsComponent,
     BusinessDetailComponent,
+    MyBookingsComponent,
     
   ],
   imports: [

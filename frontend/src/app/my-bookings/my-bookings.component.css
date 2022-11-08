@@ -1,0 +1,32 @@
+.table{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    background-color: white;
+}
+
+td > img{
+    width: 18px;
+    cursor: pointer;
+}
+
+.noReservationMsg{
+    text-align: center;
+    color: red;
+    background-color: white;
+    font-size: x-large;
+    display: block;
+    margin: 10% auto auto auto;
+    width: 30%;
+    border-radius: 15px;
+}
+
+table{
+    text-align: center;
+}
+
+.tableTitle{
+    font-size: x-large;
+    text-align: center;
+}
