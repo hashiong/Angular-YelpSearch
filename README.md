@@ -1,6 +1,10 @@
 
 # Business and Service Search Engine
 
+![App Screenshot](screenshots/yelp1.png)
+![App Screenshot](screenshots/yelp2.png)
+![App Screenshot](screenshots/yelp3.png)
+
 ### Description:
 The Business and Service Search Engine is a powerful web and mobile application designed to simplify the process of finding businesses and services near your location or any desired area. With an intuitive user interface and advanced search capabilities, this innovative search engine provides a seamless and efficient search experience across both web and mobile platforms.
 
