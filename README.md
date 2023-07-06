@@ -21,3 +21,7 @@ The Business and Service Search Engine is a powerful web and mobile application 
 - Backend Infrastructure: Powered by Node.js Express framework with APIs to retrieve and organize business data.
 - Web Deployment: Seamlessly deployed using Google Cloud Platform App Engine.
 - iOS Frontend: Built with SwiftUI and Xcode, ensuring a consistent user experience.
+
+## License
+
+The Business and Service Search Engine is open-source software licensed under the [MIT license](LICENSE). Feel free to use, modify, and distribute this project in accordance with the terms of the license.
